@@ -1,0 +1,8 @@
+- Header
+  - Routes
+- Row of main info
+- Twitter activity (right side)
+- Github activity
+  - Chart
+- Open source projects (git repos)
+  - # of git repos
