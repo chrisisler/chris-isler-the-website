@@ -1,18 +1,40 @@
-.App {
-  text-align: center;
+html, body {
+  background-color: #eeeeee;
+  color: #444;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+button {
+  padding: 0;
+  margin: 0;
+  text-transform: none;
+  background: transparent;
+  color: inherit;
+  -webkit-font-smoothing: antialiased;
+  -webkit-appearance: button;
 }
 
-.App-link {
-  color: #61dafb;
+.header-component {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 64px;
+  padding: 0 24px;
+
+  /* https://www.colorhexa.com/131d35-to-2b1335 */
+  background: #131d35;
+  background: -webkit-linear-gradient(left, #131d35, #2b1335);
+  background: -moz-linear-gradient(left, #131d35, #2b1335);
+  background: -ms-linear-gradient(left, #131d35, #2b1335);
+  background: -o-linear-gradient(left, #131d35, #2b1335);
+  background: linear-gradient(to right, #131d35, #2b1335);
+}
+
+.header-links.list {
+  color: #ffffff;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
 }
