@@ -1,6 +1,6 @@
 html, body {
-  background-color: #eeeeee;
-  color: #444;
+  background-color: #eee;
+  color: #333;
 }
 
 button {
@@ -13,12 +13,18 @@ button {
   -webkit-appearance: button;
 }
 
+/* Begin Header */
+
 .header-component {
   position: fixed;
   top: 0;
-  width: 100vw;
+  width: 100%;
+
+  /* `headerHeight` */
   height: 64px;
+
   padding: 0 24px;
+  color: #ffffff;
 
   /* https://www.colorhexa.com/131d35-to-2b1335 */
   background: #131d35;
@@ -29,12 +35,38 @@ button {
   background: linear-gradient(to right, #131d35, #2b1335);
 }
 
-.header-links.list {
-  color: #ffffff;
+.header-links-list {
   height: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
   list-style: none;
+}
+
+.header-item {
+  height: 100%;
+  display: inline-block;
+}
+
+.header-item-link {
+  color: #fff;
+  padding: 0 2rem;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  text-decoration: none;
+  height: 100%;
+}
+.header-item-link:hover {
+  background-color: #36276d;
+}
+
+/* End Header */
+
+.route-with-header {
+  /* need margin top so view content is rendered below header */
+  margin-top: 64px;
+  height: calc(100vh - 64px);
 }
