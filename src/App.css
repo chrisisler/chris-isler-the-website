@@ -70,3 +70,21 @@ button {
   margin-top: 64px;
   height: calc(100vh - 64px);
 }
+
+section {
+  position: relative;
+  max-width: 1024px;
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: left;
+  padding: 64px 80px;
+}
+
+.blog-title {
+  font-weight: 300;
+  font-size: 275%;
+}
+
+.blog-blurb {
+  padding-bottom: 40px;
+}
