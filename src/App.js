@@ -29,13 +29,12 @@ function Header() {
   )
 }
 
-function RouteWithHeader({ View }) {
+function RouteWithHeader({ View, children }) {
+  const view = children ? <View children={children} /> : <View />
   return (
     <div>
       <Header />
-      <div className="route-with-header">
-        <View />
-      </div>
+      <div className="route-with-header">{view}</div>
     </div>
   )
 }
@@ -62,21 +61,6 @@ function AboutView(props) {
 //   date: Date
 //   content: Markdown
 // }
-function BlogView(props) {
-  return (
-    <section {...props}>
-      {blogs.map(blog => (
-        <article key={blog.title} className="blog-blurb">
-          <h2 className="blog-title">
-            <Link to={blog.url}>{blog.title}</Link>
-          </h2>
-          <div className="blog-date">{blog.date.toString()}</div>
-        </article>
-      ))}
-    </section>
-  )
-}
-
 const blogs = [
   {
     url: 'todays-breakfast',
@@ -108,15 +92,43 @@ export default () => (
   <Router>
     <RouteWithHeader path="/" default View={HomeView} />
     <RouteWithHeader path="/about" View={AboutView} />
+
     <RouteWithHeader path="/blog" View={BlogView}>
-      {blogs.map(blog => {
-        // const blogView = <Markdown source={blog.content} />
-        const blogView = <h1>hello</h1>
-        console.log('blog.url is:', blog.url)
-        return (
-          <RouteWithHeader key={blog.title} path={blog.url} View={blogView} />
-        )
-      })}
+      <BlogIndexView path="/" default />
+      {blogs.map(({ title, url, content }) => (
+        <Markdown key={title} path={url} source={content} />
+      ))}
     </RouteWithHeader>
   </Router>
 )
+
+function BlogView(props) {
+  return <section {...props}>{props.children}</section>
+}
+
+function BlogIndexView(props) {
+  const subroute = props.uri.slice(5) // Remove "/blog" prefix
+  if (subroute.length !== 0) {
+    console.info(`Navigating to blog home, ${subroute} is not a valid route.`)
+    // Bug note: If a user enters an invalid route like "/blog/f34z" then after
+    // being rerouted to "/blog" clicks on a blog post link, they'll be
+    // rerouted to "blog/f34z/actual-url", this is a problem. No elegant fix is
+    // provided by @reach/router.
+    props.navigate('/blog')
+  }
+
+  return (
+    <React.Fragment>
+      {blogs.map(blog => (
+        <article key={blog.title} className="blog-blurb">
+          <h2 className="blog-title-wrapper">
+            <Link to={blog.url} className="blog-title-link">
+              {blog.title}
+            </Link>
+          </h2>
+          <div className="blog-date">{blog.date.toString()}</div>
+        </article>
+      ))}
+    </React.Fragment>
+  )
+}

@@ -1,11 +1,11 @@
 - Header
   - Routes
 - Row of main info
-- Twitter activity (right side)
+- Twitter/Instagram activity? (aside)
 - Github activity
   - Chart
 - Open source projects (git repos)
-  - # of git repos
+  - number of git repos
 
 ## Inspiration
 
